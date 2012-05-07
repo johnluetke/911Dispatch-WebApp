@@ -1,0 +1,4 @@
+RewriteEngine On
+
+RewriteRule ^([a-zA-Z\-]+)/?$ $1.php [L]
+RewriteRule ^([a-zA-Z]+)/([a-zA-Z0-9]+)/?$ index.php?entity=$1&id=$2 [L]
