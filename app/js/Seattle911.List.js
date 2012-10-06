@@ -141,7 +141,7 @@ Seattle911.List.AddIncidents = function(incidents, position) {
 
 	var incident = (position == "top") ? incidents.pop() : incidents.shift();
 
-	date = "%d/%d/%d %d:%s %s";
+	date = "%s %d, %d %d:%s %s";
 	html = "<a href='#!/map/incident/%s' id='%s' class='incident %s' style='display: none;'><div class='title'>%s</div><div class='subtitle'>%s</div><div class='date'>%s</div></a>";
 
 	incident.Date = Date.parse(incident.Date);
@@ -155,7 +155,9 @@ Seattle911.List.AddIncidents = function(incidents, position) {
 
 	ampm = incident.Date.getHours() >= 12 ? "PM" : "AM";
 
-	date = sprintf(date, incident.Date.getMonth()+1, incident.Date.getDate(), incident.Date.getFullYear(), hours, minutes, ampm);
+	months = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"];
+
+	date = sprintf(date, months[incident.Date.getMonth()], incident.Date.getDate(), incident.Date.getFullYear(), hours, minutes, ampm);
  
 	html = sprintf(html, incident.ID, incident.ID, (incident.Closed == "false") ? "open" : "closed" , incident.Type.Name, incident.Address.FormattedAddress, date);
 

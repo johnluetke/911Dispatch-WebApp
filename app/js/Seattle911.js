@@ -176,7 +176,7 @@ Seattle911.Map.AddIncident = function(map, incident) {
 	
 	Seattle911.Session.Markers.push(marker);
 
-	var date = "%d/%d/%d %d:%s %s";
+	var date = "%s %d, %d %d:%s %s";
 
 	incident.Date = Date.parse(incident.Date);
 	incident.Date = new Date(incident.Date);
@@ -189,7 +189,9 @@ Seattle911.Map.AddIncident = function(map, incident) {
 
 	ampm = incident.Date.getHours() >= 12 ? "PM" : "AM";
 
-	date = sprintf(date, incident.Date.getMonth()+1, incident.Date.getDate(), incident.Date.getFullYear(), hours, minutes, ampm);
+	months = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"];
+
+	date = sprintf(date, months[incident.Date.getMonth()], incident.Date.getDate(), incident.Date.getFullYear(), hours, minutes, ampm);
 
 	google.maps.event.addListener(marker, 'click', function() {
 		type = incident.Type.Name;
